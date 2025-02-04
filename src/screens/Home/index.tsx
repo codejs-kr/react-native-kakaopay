@@ -22,6 +22,59 @@ const Home: React.FC = () => {
     { id: "8", name: "전체", icon: "menu" },
   ];
 
+  const recentTransactions = [
+    {
+      id: "1",
+      type: "payment",
+      title: "스타벅스 강남점",
+      amount: -4800,
+      time: "오후 2:30",
+      icon: "local-cafe",
+    },
+    {
+      id: "2",
+      type: "transfer",
+      title: "김카카오",
+      amount: 50000,
+      time: "오전 11:20",
+      icon: "person",
+    },
+  ];
+
+  const mySubscriptions = [
+    {
+      id: "1",
+      name: "넷플릭스",
+      amount: 17000,
+      dueDate: "2024.03.25",
+      logo: "https://picsum.photos/40/40?random=1",
+    },
+    {
+      id: "2",
+      name: "멜론",
+      amount: 10900,
+      dueDate: "2024.03.28",
+      logo: "https://picsum.photos/40/40?random=2",
+    },
+  ];
+
+  const investmentProducts = [
+    {
+      id: "1",
+      title: "해외주식 소액으로 시작하기",
+      description: "천원부터 투자 가능",
+      returnRate: "연 2.5%",
+      image: "https://picsum.photos/100/100?random=3",
+    },
+    {
+      id: "2",
+      title: "적금 금리 비교",
+      description: "수수료 없이 간편하게",
+      returnRate: "연 5.5%",
+      image: "https://picsum.photos/100/100?random=4",
+    },
+  ];
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -108,6 +161,124 @@ const Home: React.FC = () => {
           </View>
           {/* 추가 주식 관련 컨텐츠 */}
         </TouchableOpacity>
+
+        {/* 최근 거래내역 섹션 */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>최근 거래내역</Text>
+          {recentTransactions.map((transaction) => (
+            <TouchableOpacity key={transaction.id} style={styles.transactionItem}>
+              <View style={styles.transactionLeft}>
+                <View
+                  style={[
+                    styles.transactionIcon,
+                    {
+                      backgroundColor:
+                        transaction.type === "payment" ? "#FF5F00" : "#2196F3",
+                    },
+                  ]}
+                >
+                  <MaterialIcons
+                    name={transaction.icon}
+                    size={20}
+                    color="#FFF"
+                  />
+                </View>
+                <View>
+                  <Text style={styles.transactionTitle}>{transaction.title}</Text>
+                  <Text style={styles.transactionTime}>{transaction.time}</Text>
+                </View>
+              </View>
+              <Text
+                style={[
+                  styles.transactionAmount,
+                  {
+                    color: transaction.amount < 0 ? "#000" : "#2196F3",
+                  },
+                ]}
+              >
+                {transaction.amount.toLocaleString()}원
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+
+        {/* 정기결제 관리 섹션 */}
+        <View style={styles.section}>
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionTitle}>이번 달 정기결제</Text>
+            <TouchableOpacity style={styles.seeAllButton}>
+              <Text style={styles.seeAllText}>전체보기</Text>
+              <MaterialIcons name="chevron-right" size={20} color="#666" />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.subscriptionsList}>
+            {mySubscriptions.map((subscription) => (
+              <View key={subscription.id} style={styles.subscriptionItem}>
+                <Image
+                  source={{ uri: subscription.logo }}
+                  style={styles.subscriptionLogo}
+                />
+                <View style={styles.subscriptionInfo}>
+                  <Text style={styles.subscriptionName}>
+                    {subscription.name}
+                  </Text>
+                  <Text style={styles.subscriptionAmount}>
+                    {subscription.amount.toLocaleString()}원
+                  </Text>
+                  <Text style={styles.subscriptionDate}>
+                    {subscription.dueDate} 결제 예정
+                  </Text>
+                </View>
+              </View>
+            ))}
+          </View>
+        </View>
+
+        {/* 투자 상품 추천 섹션 */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>투자하고 수익 받기</Text>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={styles.investmentScroll}
+          >
+            {investmentProducts.map((product) => (
+              <TouchableOpacity
+                key={product.id}
+                style={styles.investmentCard}
+              >
+                <Image
+                  source={{ uri: product.image }}
+                  style={styles.investmentImage}
+                />
+                <View style={styles.investmentInfo}>
+                  <Text style={styles.investmentTitle}>{product.title}</Text>
+                  <Text style={styles.investmentDesc}>
+                    {product.description}
+                  </Text>
+                  <Text style={styles.investmentRate}>{product.returnRate}</Text>
+                </View>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        </View>
+
+        {/* 추천 혜택 섹션 */}
+        <View style={[styles.section, styles.benefitsSection]}>
+          <Text style={styles.sectionTitle}>이런 혜택은 어때요?</Text>
+          <View style={styles.benefitCards}>
+            <TouchableOpacity style={styles.benefitCard}>
+              <MaterialIcons name="card-giftcard" size={24} color="#FF5F00" />
+              <Text style={styles.benefitTitle}>친구 초대하면</Text>
+              <Text style={styles.benefitAmount}>5,000원 받기</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.benefitCard}>
+              <MaterialIcons name="local-offer" size={24} color="#4CAF50" />
+              <Text style={styles.benefitTitle}>첫 결제 시</Text>
+              <Text style={styles.benefitAmount}>3,000원 캐시백</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -250,14 +421,146 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: "#E5E5E5",
   },
+  section: {
+    backgroundColor: "#FFFFFF",
+    marginTop: 8,
+    padding: 20,
+  },
   sectionHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    marginBottom: 16,
   },
   sectionTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  seeAllButton: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  seeAllText: {
+    fontSize: 14,
+    color: "#666",
+  },
+  transactionItem: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingVertical: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: "#E5E5E5",
+  },
+  transactionLeft: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 12,
+  },
+  transactionIcon: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  transactionTitle: {
     fontSize: 16,
+    marginBottom: 4,
+  },
+  transactionTime: {
+    fontSize: 12,
+    color: "#666",
+  },
+  transactionAmount: {
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  subscriptionsList: {
+    gap: 16,
+  },
+  subscriptionItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 12,
+  },
+  subscriptionLogo: {
+    width: 40,
+    height: 40,
+    borderRadius: 8,
+  },
+  subscriptionInfo: {
+    flex: 1,
+  },
+  subscriptionName: {
+    fontSize: 16,
+    marginBottom: 4,
+  },
+  subscriptionAmount: {
+    fontSize: 14,
     fontWeight: "500",
+    marginBottom: 2,
+  },
+  subscriptionDate: {
+    fontSize: 12,
+    color: "#666",
+  },
+  investmentScroll: {
+    marginTop: 16,
+  },
+  investmentCard: {
+    width: 280,
+    marginRight: 16,
+    borderRadius: 12,
+    backgroundColor: "#F8F9FA",
+    overflow: "hidden",
+  },
+  investmentImage: {
+    width: "100%",
+    height: 140,
+  },
+  investmentInfo: {
+    padding: 16,
+  },
+  investmentTitle: {
+    fontSize: 16,
+    fontWeight: "bold",
+    marginBottom: 8,
+  },
+  investmentDesc: {
+    fontSize: 14,
+    color: "#666",
+    marginBottom: 8,
+  },
+  investmentRate: {
+    fontSize: 14,
+    color: "#FF5F00",
+    fontWeight: "500",
+  },
+  benefitsSection: {
+    marginBottom: 20,
+  },
+  benefitCards: {
+    flexDirection: "row",
+    gap: 12,
+    marginTop: 16,
+  },
+  benefitCard: {
+    flex: 1,
+    backgroundColor: "#F8F9FA",
+    padding: 16,
+    borderRadius: 12,
+    alignItems: "center",
+  },
+  benefitTitle: {
+    fontSize: 14,
+    marginTop: 8,
+    marginBottom: 4,
+  },
+  benefitAmount: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#FF5F00",
   },
 });
 
