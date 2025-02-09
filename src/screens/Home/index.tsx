@@ -102,7 +102,7 @@ const Home: React.FC = () => {
             카카오페이에서 대출 신청 시{"\n"}1년 이자지원 찬스
           </Text>
           <Image
-            source={require("../../../assets/images/promotion-gift.png")}
+            source={{ uri: "https://picsum.photos/100/100?random=10" }}
             style={styles.promotionImage}
           />
         </View>
@@ -166,7 +166,10 @@ const Home: React.FC = () => {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>최근 거래내역</Text>
           {recentTransactions.map((transaction) => (
-            <TouchableOpacity key={transaction.id} style={styles.transactionItem}>
+            <TouchableOpacity
+              key={transaction.id}
+              style={styles.transactionItem}
+            >
               <View style={styles.transactionLeft}>
                 <View
                   style={[
@@ -184,7 +187,9 @@ const Home: React.FC = () => {
                   />
                 </View>
                 <View>
-                  <Text style={styles.transactionTitle}>{transaction.title}</Text>
+                  <Text style={styles.transactionTitle}>
+                    {transaction.title}
+                  </Text>
                   <Text style={styles.transactionTime}>{transaction.time}</Text>
                 </View>
               </View>
@@ -243,10 +248,7 @@ const Home: React.FC = () => {
             style={styles.investmentScroll}
           >
             {investmentProducts.map((product) => (
-              <TouchableOpacity
-                key={product.id}
-                style={styles.investmentCard}
-              >
+              <TouchableOpacity key={product.id} style={styles.investmentCard}>
                 <Image
                   source={{ uri: product.image }}
                   style={styles.investmentImage}
@@ -256,7 +258,9 @@ const Home: React.FC = () => {
                   <Text style={styles.investmentDesc}>
                     {product.description}
                   </Text>
-                  <Text style={styles.investmentRate}>{product.returnRate}</Text>
+                  <Text style={styles.investmentRate}>
+                    {product.returnRate}
+                  </Text>
                 </View>
               </TouchableOpacity>
             ))}
