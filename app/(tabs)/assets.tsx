@@ -1,2 +1,3 @@
-import Assets from "../../src/screens/Assets";
+import Assets from '../../src/screens/Assets';
+
 export default Assets;

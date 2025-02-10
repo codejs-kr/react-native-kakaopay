@@ -3,19 +3,16 @@ import React from 'react';
 import { Platform } from 'react-native';
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 
-import { HapticTab } from '@/components/HapticTab';
+import { HapticTab } from '@/src/shared/components/HapticTab';
 
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import TabBarBackground from '@/src/shared/components/ui/TabBarBackground';
+import { Colors } from '@/src/shared/constants/Colors';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: Colors['light'].tint,
         tabBarInactiveTintColor: '#999999',
         tabBarLabelStyle: {
           fontSize: 12,

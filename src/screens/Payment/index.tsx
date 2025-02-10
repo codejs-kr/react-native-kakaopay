@@ -1,49 +1,43 @@
-import React, { useState } from "react";
-import {
-  View,
-  Text,
-  ScrollView,
-  TouchableOpacity,
-  StyleSheet,
-  SafeAreaView,
-  Image,
-} from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
+import React from 'react';
+import { View, Text, ScrollView, TouchableOpacity, StyleSheet, SafeAreaView, Image } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
+import TabViewLayout from '@/src/shared/components/TabViewLayout';
+import TabHeader from '@/src/shared/components/TabHeader';
 
 const Payment: React.FC = () => {
   const quickMenus = [
-    { id: "1", name: "송금·충전", icon: "sync-alt", color: "#FFB300" },
-    { id: "2", name: "멤버십", icon: "card-membership", color: "#4CAF50" },
-    { id: "3", name: "쿠폰함", icon: "local-offer", color: "#F44336" },
-    { id: "4", name: "결제내역", icon: "receipt-long", color: "#2196F3" },
+    { id: '1', name: '송금·충전', icon: 'sync-alt', color: '#FFB300' },
+    { id: '2', name: '멤버십', icon: 'card-membership', color: '#4CAF50' },
+    { id: '3', name: '쿠폰함', icon: 'local-offer', color: '#F44336' },
+    { id: '4', name: '결제내역', icon: 'receipt-long', color: '#2196F3' },
   ];
 
   const recentPayment = {
-    amount: "20,000원",
-    title: "결제 완료",
-    description: "3분 전 · 카카오프렌즈샵",
+    amount: '20,000원',
+    title: '결제 완료',
+    description: '3분 전 · 카카오프렌즈샵',
   };
 
   const benefitInfo = {
-    title: "매장결제 적립",
+    title: '매장결제 적립',
     benefits: [
-      { rate: "3%", type: "최애매장", icon: "favorite" },
-      { rate: "2%", type: "모든매장", icon: "store" },
+      { rate: '3%', type: '최애매장', icon: 'favorite' },
+      { rate: '2%', type: '모든매장', icon: 'store' },
     ],
-    points: "15,600원",
-    period: "최근 30일 간",
+    points: '15,600원',
+    period: '최근 30일 간',
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <TabViewLayout>
+      <TabHeader />
+
       <ScrollView style={styles.scrollView}>
         {/* 상단 퀵메뉴 */}
         <View style={styles.quickMenuContainer}>
           {quickMenus.map((menu) => (
             <TouchableOpacity key={menu.id} style={styles.quickMenuItem}>
-              <View
-                style={[styles.iconCircle, { backgroundColor: menu.color }]}
-              >
+              <View style={[styles.iconCircle, { backgroundColor: menu.color }]}>
                 <MaterialIcons name={menu.icon as any} size={24} color="#FFF" />
               </View>
               <Text style={styles.quickMenuText}>{menu.name}</Text>
@@ -64,14 +58,8 @@ const Payment: React.FC = () => {
 
           {/* 바코드 영역 */}
           <View style={styles.barcodeContainer}>
-            <Image
-              source={{ uri: "https://via.placeholder.com/300x100" }}
-              style={styles.barcode}
-            />
-            <Image
-              source={{ uri: "https://via.placeholder.com/100" }}
-              style={styles.qrCode}
-            />
+            {/* <Image source={require('@/src/shared/assets/images/bar_code.png')} style={styles.barcode} />
+            <Image source={require('@/src/shared/assets/images/qr_code.png')} style={styles.qrCode} /> */}
           </View>
         </View>
 
@@ -84,9 +72,7 @@ const Payment: React.FC = () => {
                 <Text style={styles.recentPaymentAmount}>
                   {recentPayment.amount} {recentPayment.title}
                 </Text>
-                <Text style={styles.recentPaymentDescription}>
-                  {recentPayment.description}
-                </Text>
+                <Text style={styles.recentPaymentDescription}>{recentPayment.description}</Text>
               </View>
             </View>
             <MaterialIcons name="chevron-right" size={24} color="#666" />
@@ -104,20 +90,14 @@ const Payment: React.FC = () => {
               {benefitInfo.benefits.map((benefit, index) => (
                 <View key={index} style={styles.benefitRate}>
                   <Text style={styles.rateText}>{benefit.rate}</Text>
-                  <MaterialIcons
-                    name={benefit.icon as any}
-                    size={20}
-                    color="#666"
-                  />
+                  <MaterialIcons name={benefit.icon as any} size={20} color="#666" />
                   <Text style={styles.rateType}>{benefit.type}</Text>
                 </View>
               ))}
             </View>
             <View style={styles.pointsInfo}>
               <Text style={styles.periodText}>{benefitInfo.period}</Text>
-              <Text style={styles.pointsText}>
-                페이포인트 {benefitInfo.points} 받았어요!
-              </Text>
+              <Text style={styles.pointsText}>페이포인트 {benefitInfo.points} 받았어요!</Text>
             </View>
           </View>
         </View>
@@ -135,49 +115,44 @@ const Payment: React.FC = () => {
           <Text style={styles.payButtonText}>결제하기</Text>
         </TouchableOpacity>
       </View>
-    </SafeAreaView>
+    </TabViewLayout>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#F5F6F7",
-  },
   scrollView: {
-    flex: 1,
-    marginBottom: 80, // 하단 버튼 높이만큼 여백 추가
+    marginBottom: 74, // 하단 버튼 높이만큼 여백 추가
   },
   quickMenuContainer: {
-    flexDirection: "row",
-    backgroundColor: "#FFF",
+    flexDirection: 'row',
+    backgroundColor: '#FFF',
     paddingVertical: 16,
     paddingHorizontal: 8,
   },
   quickMenuItem: {
     flex: 1,
-    alignItems: "center",
+    alignItems: 'center',
   },
   iconCircle: {
     width: 48,
     height: 48,
     borderRadius: 24,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     marginBottom: 8,
   },
   quickMenuText: {
     fontSize: 12,
-    color: "#333",
+    color: '#333',
   },
   paymentSection: {
-    backgroundColor: "#FFF",
+    backgroundColor: '#FFF',
     padding: 20,
     marginTop: 8,
   },
   paymentHeader: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: 20,
   },
   paymentTitle: {
@@ -188,36 +163,38 @@ const styles = StyleSheet.create({
   paymentAmount: {
     flex: 1,
     fontSize: 14,
-    color: "#666",
+    color: '#666',
   },
   amountHighlight: {
-    color: "#000",
-    fontWeight: "bold",
+    color: '#000',
+    fontWeight: 'bold',
   },
   barcodeContainer: {
-    alignItems: "center",
-    gap: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 26,
   },
   barcode: {
-    width: "100%",
-    height: 80,
-    resizeMode: "contain",
+    width: 170,
+    height: 106,
+    resizeMode: 'contain',
   },
   qrCode: {
     width: 100,
     height: 100,
   },
   recentPayment: {
-    backgroundColor: "#FFF",
+    backgroundColor: '#FFF',
     padding: 16,
     marginTop: 8,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   recentPaymentContent: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     flex: 1,
   },
   recentPaymentInfo: {
@@ -225,21 +202,21 @@ const styles = StyleSheet.create({
   },
   recentPaymentAmount: {
     fontSize: 14,
-    fontWeight: "500",
+    fontWeight: '500',
   },
   recentPaymentDescription: {
     fontSize: 12,
-    color: "#666",
+    color: '#666',
     marginTop: 2,
   },
   benefitSection: {
-    backgroundColor: "#FFF",
+    backgroundColor: '#FFF',
     padding: 20,
     marginTop: 8,
   },
   benefitHeader: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: 16,
   },
   benefitTitle: {
@@ -247,75 +224,74 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
   benefitContent: {
-    backgroundColor: "#F8F9FA",
+    backgroundColor: '#F8F9FA',
     padding: 16,
     borderRadius: 8,
   },
   benefitRates: {
-    flexDirection: "row",
-    justifyContent: "space-around",
+    flexDirection: 'row',
+    justifyContent: 'space-around',
     marginBottom: 16,
   },
   benefitRate: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     gap: 4,
   },
   rateText: {
     fontSize: 16,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   rateType: {
     fontSize: 14,
-    color: "#666",
+    color: '#666',
   },
   pointsInfo: {
     borderTopWidth: 1,
-    borderTopColor: "#E5E5E5",
+    borderTopColor: '#E5E5E5',
     paddingTop: 16,
   },
   periodText: {
     fontSize: 12,
-    color: "#666",
+    color: '#666',
   },
   pointsText: {
     fontSize: 14,
-    fontWeight: "500",
+    fontWeight: '500',
     marginTop: 4,
   },
   moreBenefitsButton: {
-    backgroundColor: "#FFF",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#FFF',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
     padding: 16,
     marginTop: 8,
   },
   moreBenefitsText: {
     fontSize: 14,
-    fontWeight: "500",
+    fontWeight: '500',
   },
   payButtonContainer: {
-    position: "absolute",
-    bottom: 60,
+    position: 'absolute',
+    bottom: 50,
     left: 0,
     right: 0,
-    backgroundColor: "#FFFFFF",
-    paddingBottom: 34, // 아이폰의 경우 하단 안전영역 고려
+    backgroundColor: '#FFFFFF',
     paddingHorizontal: 16,
-    paddingTop: 8,
+    paddingVertical: 10,
     borderTopWidth: 1,
-    borderTopColor: "#E5E5E5",
+    borderTopColor: '#E5E5E5',
   },
   payButton: {
-    backgroundColor: "#FFE100",
+    backgroundColor: '#FFE100',
     padding: 16,
-    alignItems: "center",
+    alignItems: 'center',
     borderRadius: 8,
   },
   payButtonText: {
     fontSize: 16,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
 });
 

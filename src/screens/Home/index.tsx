@@ -1,6 +1,9 @@
 import React from 'react';
 import { View, Text, ScrollView, TouchableOpacity, StyleSheet, SafeAreaView, Image } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { DUMMY_IMAGES } from '@/src/shared/constants/dummy';
+import TabHeader from '@/src/shared/components/TabHeader';
+import TabViewLayout from '@/src/shared/components/TabViewLayout';
 
 const Home: React.FC = () => {
   const serviceMenus = [
@@ -39,14 +42,14 @@ const Home: React.FC = () => {
       name: '넷플릭스',
       amount: 17000,
       dueDate: '2024.03.25',
-      logo: 'https://picsum.photos/40/40?random=1',
+      logo: DUMMY_IMAGES['300'],
     },
     {
       id: '2',
       name: '멜론',
       amount: 10900,
       dueDate: '2024.03.28',
-      logo: 'https://picsum.photos/40/40?random=2',
+      logo: DUMMY_IMAGES['300'],
     },
   ];
 
@@ -56,39 +59,26 @@ const Home: React.FC = () => {
       title: '해외주식 소액으로 시작하기',
       description: '천원부터 투자 가능',
       returnRate: '연 2.5%',
-      image: 'https://picsum.photos/100/100?random=3',
+      image: DUMMY_IMAGES['600'],
     },
     {
       id: '2',
       title: '적금 금리 비교',
       description: '수수료 없이 간편하게',
       returnRate: '연 5.5%',
-      image: 'https://picsum.photos/100/100?random=4',
+      image: DUMMY_IMAGES['600'],
     },
   ];
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <Image source={require('../../../assets/images/kakaopay-logo.png')} style={styles.logo} />
-        <View style={styles.headerRight}>
-          <TouchableOpacity style={styles.iconButton}>
-            <MaterialIcons name="search" size={24} color="#000" />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.iconButton}>
-            <MaterialIcons name="notifications" size={24} color="#000" />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.iconButton}>
-            <MaterialIcons name="menu" size={24} color="#000" />
-          </TouchableOpacity>
-        </View>
-      </View>
+    <TabViewLayout>
+      <TabHeader />
 
       <ScrollView style={styles.content}>
         {/* 프로모션 배너 */}
         <View style={styles.promotionBanner}>
           <Text style={styles.promotionText}>카카오페이에서 대출 신청 시{'\n'}1년 이자지원 찬스</Text>
-          <Image source={{ uri: 'https://picsum.photos/100/100?random=10' }} style={styles.promotionImage} />
+          <Image source={{ uri: DUMMY_IMAGES['300'] }} style={styles.promotionImage} />
         </View>
 
         {/* 페이머니 섹션 */}
@@ -100,7 +90,7 @@ const Home: React.FC = () => {
             </TouchableOpacity>
           </View>
           <View style={styles.payMoneyAmount}>
-            <Text style={styles.amount}>0원</Text>
+            <Text style={styles.amount}>300,000원</Text>
             <MaterialIcons name="chevron-right" size={24} color="#000" />
           </View>
           <View style={styles.payMoneyActions}>
@@ -111,8 +101,9 @@ const Home: React.FC = () => {
               <Text style={styles.actionButtonText}>송금</Text>
             </TouchableOpacity>
           </View>
+
           {/* 충전 프로그레스 바 */}
-          <View style={styles.chargeProgress}>
+          {/* <View style={styles.chargeProgress}>
             <View style={styles.progressBar}>
               <View style={styles.progressFill} />
             </View>
@@ -124,30 +115,21 @@ const Home: React.FC = () => {
               <Text style={styles.rateText}>세전,최대 연 5%</Text>
               <Text style={styles.rateText}>연 2.5%</Text>
             </View>
-          </View>
+          </View> */}
         </View>
 
         {/* 서비스 메뉴 그리드 */}
-        <View style={styles.serviceGrid}>
+        {/* <View style={styles.serviceGrid}>
           {serviceMenus.map((menu) => (
             <TouchableOpacity key={menu.id} style={styles.serviceItem}>
               <MaterialIcons name={menu.icon as any} size={28} color="#333" />
               <Text style={styles.serviceName}>{menu.name}</Text>
             </TouchableOpacity>
           ))}
-        </View>
-
-        {/* 보유 주식 섹션 */}
-        <TouchableOpacity style={styles.stockSection}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>보유 주식 pay</Text>
-            <MaterialIcons name="chevron-right" size={24} color="#666" />
-          </View>
-          {/* 추가 주식 관련 컨텐츠 */}
-        </TouchableOpacity>
+        </View> */}
 
         {/* 최근 거래내역 섹션 */}
-        <View style={styles.section}>
+        {/* <View style={styles.section}>
           <Text style={styles.sectionTitle}>최근 거래내역</Text>
           {recentTransactions.map((transaction) => (
             <TouchableOpacity key={transaction.id} style={styles.transactionItem}>
@@ -179,10 +161,10 @@ const Home: React.FC = () => {
               </Text>
             </TouchableOpacity>
           ))}
-        </View>
+        </View> */}
 
         {/* 정기결제 관리 섹션 */}
-        <View style={styles.section}>
+        {/* <View style={styles.section}>
           <View style={styles.sectionHeader}>
             <Text style={styles.sectionTitle}>이번 달 정기결제</Text>
             <TouchableOpacity style={styles.seeAllButton}>
@@ -202,10 +184,10 @@ const Home: React.FC = () => {
               </View>
             ))}
           </View>
-        </View>
+        </View> */}
 
         {/* 투자 상품 추천 섹션 */}
-        <View style={styles.section}>
+        {/* <View style={styles.section}>
           <Text style={styles.sectionTitle}>투자하고 수익 받기</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.investmentScroll}>
             {investmentProducts.map((product) => (
@@ -219,10 +201,10 @@ const Home: React.FC = () => {
               </TouchableOpacity>
             ))}
           </ScrollView>
-        </View>
+        </View> */}
 
         {/* 추천 혜택 섹션 */}
-        <View style={[styles.section, styles.benefitsSection]}>
+        {/* <View style={[styles.section, styles.benefitsSection]}>
           <Text style={styles.sectionTitle}>이런 혜택은 어때요?</Text>
           <View style={styles.benefitCards}>
             <TouchableOpacity style={styles.benefitCard}>
@@ -236,47 +218,26 @@ const Home: React.FC = () => {
               <Text style={styles.benefitAmount}>3,000원 캐시백</Text>
             </TouchableOpacity>
           </View>
-        </View>
+        </View> */}
       </ScrollView>
-    </SafeAreaView>
+    </TabViewLayout>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#E5E5E5',
-  },
-  logo: {
-    height: 24,
-    width: 100,
-    resizeMode: 'contain',
-  },
-  headerRight: {
-    flexDirection: 'row',
-    gap: 16,
-  },
-  iconButton: {
-    padding: 4,
-  },
   content: {
     flex: 1,
+    backgroundColor: '#fff',
   },
   promotionBanner: {
+    margin: 20,
     backgroundColor: '#F5F6F7',
     padding: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 8,
+    borderRadius: 12,
   },
   promotionText: {
     fontSize: 16,
@@ -330,15 +291,15 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   progressBar: {
-    height: 4,
+    height: 5,
     backgroundColor: '#E5E5E5',
-    borderRadius: 2,
+    borderRadius: 4,
   },
   progressFill: {
     width: '30%',
     height: '100%',
     backgroundColor: '#FFE100',
-    borderRadius: 2,
+    borderRadius: 4,
   },
   progressLabels: {
     flexDirection: 'row',

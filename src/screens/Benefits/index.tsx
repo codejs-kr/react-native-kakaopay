@@ -1,60 +1,54 @@
-import React from "react";
-import {
-  View,
-  Text,
-  ScrollView,
-  TouchableOpacity,
-  StyleSheet,
-  SafeAreaView,
-  Image,
-} from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
+import React from 'react';
+import { View, Text, ScrollView, TouchableOpacity, StyleSheet, SafeAreaView, Image } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
+import TabViewLayout from '@/src/shared/components/TabViewLayout';
+import TabHeader from '@/src/shared/components/TabHeader';
+import { DUMMY_IMAGES } from '@/src/shared/constants/dummy';
 
 const Benefits: React.FC = () => {
   const dummyBenefits = [
     {
-      id: "1",
-      period: "3개월간",
-      amount: "1,250,534",
-      type: "혜택",
+      id: '1',
+      period: '3개월간',
+      amount: '1,250,534',
+      type: '혜택',
     },
   ];
 
   const dummyServices = [
     {
-      id: "1",
-      title: "자동차보험",
-      description: "자동차보험료 계산 시\n페이포인트 지급!",
-      tag: "즉시적립",
-      tagColor: "#4C9EFF",
-      points: "1원",
-      image: "https://via.placeholder.com/60",
+      id: '1',
+      title: '자동차보험',
+      description: '자동차보험료 계산 시\n페이포인트 지급!',
+      tag: '즉시적립',
+      tagColor: '#4C9EFF',
+      points: '1원',
+      image: DUMMY_IMAGES['300'],
     },
     {
-      id: "2",
-      title: "춘식이팜",
-      description: "고구마 심고 3만p받기",
+      id: '2',
+      title: '춘식이팜',
+      description: '고구마 심고 3만p받기',
       isNew: true,
-      image: "https://via.placeholder.com/60",
+      image: DUMMY_IMAGES['300'],
     },
     {
-      id: "3",
-      title: "출석체크",
-      description: "매일매일 포인트 받기",
-      image: "https://via.placeholder.com/60",
+      id: '3',
+      title: '출석체크',
+      description: '매일매일 포인트 받기',
+      image: DUMMY_IMAGES['300'],
     },
   ];
 
   return (
-    <SafeAreaView style={styles.container}>
+    <TabViewLayout style={styles.container}>
+      <TabHeader />
+
       <ScrollView style={styles.scrollView}>
         {/* 페이포인트 섹션 */}
         <TouchableOpacity style={styles.pointSection}>
           <View style={styles.pointHeader}>
-            <Image
-              source={{ uri: "https://via.placeholder.com/30" }}
-              style={styles.pointIcon}
-            />
+            <Image source={require('@/src/shared/assets/images/kakaopay-logo.png')} style={styles.pointIcon} />
             <Text style={styles.pointTitle}>페이포인트</Text>
           </View>
           <View style={styles.pointAmount}>
@@ -68,9 +62,7 @@ const Benefits: React.FC = () => {
           {dummyBenefits.map((benefit) => (
             <TouchableOpacity key={benefit.id} style={styles.benefitCard}>
               <Text style={styles.benefitPeriod}>
-                {benefit.period}{" "}
-                <Text style={styles.benefitAmount}>{benefit.amount}원</Text>{" "}
-                {benefit.type} 받았어요
+                {benefit.period} <Text style={styles.benefitAmount}>{benefit.amount}원</Text> {benefit.type} 받았어요
               </Text>
               <Text style={styles.benefitPage}>1 / 2</Text>
             </TouchableOpacity>
@@ -91,24 +83,15 @@ const Benefits: React.FC = () => {
                     </View>
                   )}
                 </View>
-                <Text style={styles.serviceDescription}>
-                  {service.description}
-                </Text>
+                <Text style={styles.serviceDescription}>{service.description}</Text>
                 {service.tag && (
-                  <View
-                    style={[styles.tag, { backgroundColor: service.tagColor }]}
-                  >
+                  <View style={[styles.tag, { backgroundColor: service.tagColor }]}>
                     <Text style={styles.tagText}>{service.tag}</Text>
-                    {service.points && (
-                      <Text style={styles.tagPoints}>{service.points}</Text>
-                    )}
+                    {service.points && <Text style={styles.tagPoints}>{service.points}</Text>}
                   </View>
                 )}
               </View>
-              <Image
-                source={{ uri: service.image }}
-                style={styles.serviceImage}
-              />
+              <Image source={{ uri: service.image }} style={styles.serviceImage} />
             </TouchableOpacity>
           ))}
         </View>
@@ -128,126 +111,120 @@ const Benefits: React.FC = () => {
           <View style={styles.progressBar}>
             <View style={styles.progressDots}>
               {[...Array(5)].map((_, index) => (
-                <View
-                  key={index}
-                  style={[
-                    styles.progressDot,
-                    index === 0 && styles.progressDotActive,
-                  ]}
-                />
+                <View key={index} style={[styles.progressDot, index === 0 && styles.progressDotActive]} />
               ))}
             </View>
             <Text style={styles.progressCount}>0 / 5일</Text>
           </View>
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </TabViewLayout>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#F5F6F7",
+    backgroundColor: '#F5F6F7',
   },
   scrollView: {
     flex: 1,
   },
   pointSection: {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: '#FFFFFF',
     padding: 20,
     marginBottom: 8,
   },
   pointHeader: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     gap: 8,
   },
   pointIcon: {
-    width: 30,
-    height: 30,
+    width: 45,
+    height: 22,
     borderRadius: 15,
+    resizeMode: 'cover',
   },
   pointTitle: {
     fontSize: 14,
-    color: "#666",
+    color: '#666',
   },
   pointAmount: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     marginTop: 8,
   },
   amount: {
     fontSize: 24,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   benefitSummary: {
     padding: 16,
   },
   benefitCard: {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: '#FFFFFF',
     padding: 20,
     borderRadius: 12,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   benefitPeriod: {
     fontSize: 16,
-    color: "#333",
+    color: '#333',
   },
   benefitAmount: {
-    color: "#4C9EFF",
-    fontWeight: "bold",
+    color: '#4C9EFF',
+    fontWeight: 'bold',
   },
   benefitPage: {
-    color: "#999",
+    color: '#999',
     fontSize: 14,
   },
   easyBenefits: {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: '#FFFFFF',
     padding: 20,
   },
   sectionTitle: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginBottom: 16,
   },
   serviceCard: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     paddingVertical: 16,
     borderBottomWidth: 1,
-    borderBottomColor: "#E5E5E5",
+    borderBottomColor: '#E5E5E5',
   },
   serviceInfo: {
     flex: 1,
   },
   serviceHeader: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     gap: 8,
   },
   serviceTitle: {
     fontSize: 16,
-    fontWeight: "500",
+    fontWeight: '500',
   },
   newBadge: {
-    backgroundColor: "#FF5F00",
+    backgroundColor: '#FF5F00',
     paddingHorizontal: 6,
     paddingVertical: 2,
     borderRadius: 4,
   },
   newBadgeText: {
-    color: "#FFFFFF",
+    color: '#FFFFFF',
     fontSize: 12,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   serviceDescription: {
     fontSize: 14,
-    color: "#666",
+    color: '#666',
     marginTop: 4,
     lineHeight: 20,
   },
@@ -257,71 +234,71 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   tag: {
-    flexDirection: "row",
-    alignItems: "center",
-    alignSelf: "flex-start",
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'flex-start',
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderRadius: 4,
     marginTop: 8,
   },
   tagText: {
-    color: "#FFFFFF",
+    color: '#FFFFFF',
     fontSize: 12,
-    fontWeight: "500",
+    fontWeight: '500',
   },
   tagPoints: {
-    color: "#FFFFFF",
+    color: '#FFFFFF',
     fontSize: 12,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginLeft: 4,
   },
   bigBenefitButton: {
-    backgroundColor: "#FFFFFF",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#FFFFFF',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
     padding: 16,
     marginVertical: 8,
   },
   bigBenefitText: {
     fontSize: 16,
-    fontWeight: "500",
+    fontWeight: '500',
   },
   attendanceProgress: {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: '#FFFFFF',
     padding: 20,
   },
   progressHeader: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     gap: 8,
   },
   progressText: {
     fontSize: 14,
-    color: "#666",
+    color: '#666',
   },
   progressBar: {
     marginTop: 16,
   },
   progressDots: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginBottom: 8,
   },
   progressDot: {
     width: 24,
     height: 24,
     borderRadius: 12,
-    backgroundColor: "#E5E5E5",
+    backgroundColor: '#E5E5E5',
   },
   progressDotActive: {
-    backgroundColor: "#4C9EFF",
+    backgroundColor: '#4C9EFF',
   },
   progressCount: {
-    textAlign: "right",
+    textAlign: 'right',
     fontSize: 12,
-    color: "#666",
+    color: '#666',
   },
 });
 
