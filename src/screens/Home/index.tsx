@@ -103,7 +103,7 @@ const Home: React.FC = () => {
           </View>
 
           {/* 충전 프로그레스 바 */}
-          {/* <View style={styles.chargeProgress}>
+          <View style={styles.chargeProgress}>
             <View style={styles.progressBar}>
               <View style={styles.progressFill} />
             </View>
@@ -115,21 +115,21 @@ const Home: React.FC = () => {
               <Text style={styles.rateText}>세전,최대 연 5%</Text>
               <Text style={styles.rateText}>연 2.5%</Text>
             </View>
-          </View> */}
+          </View>
         </View>
 
         {/* 서비스 메뉴 그리드 */}
-        {/* <View style={styles.serviceGrid}>
+        <View style={styles.serviceGrid}>
           {serviceMenus.map((menu) => (
             <TouchableOpacity key={menu.id} style={styles.serviceItem}>
               <MaterialIcons name={menu.icon as any} size={28} color="#333" />
               <Text style={styles.serviceName}>{menu.name}</Text>
             </TouchableOpacity>
           ))}
-        </View> */}
+        </View>
 
         {/* 최근 거래내역 섹션 */}
-        {/* <View style={styles.section}>
+        <View style={styles.section}>
           <Text style={styles.sectionTitle}>최근 거래내역</Text>
           {recentTransactions.map((transaction) => (
             <TouchableOpacity key={transaction.id} style={styles.transactionItem}>
@@ -161,10 +161,10 @@ const Home: React.FC = () => {
               </Text>
             </TouchableOpacity>
           ))}
-        </View> */}
+        </View>
 
         {/* 정기결제 관리 섹션 */}
-        {/* <View style={styles.section}>
+        <View style={styles.section}>
           <View style={styles.sectionHeader}>
             <Text style={styles.sectionTitle}>이번 달 정기결제</Text>
             <TouchableOpacity style={styles.seeAllButton}>
@@ -184,10 +184,10 @@ const Home: React.FC = () => {
               </View>
             ))}
           </View>
-        </View> */}
+        </View>
 
         {/* 투자 상품 추천 섹션 */}
-        {/* <View style={styles.section}>
+        <View style={styles.section}>
           <Text style={styles.sectionTitle}>투자하고 수익 받기</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.investmentScroll}>
             {investmentProducts.map((product) => (
@@ -201,10 +201,10 @@ const Home: React.FC = () => {
               </TouchableOpacity>
             ))}
           </ScrollView>
-        </View> */}
+        </View>
 
         {/* 추천 혜택 섹션 */}
-        {/* <View style={[styles.section, styles.benefitsSection]}>
+        <View style={[styles.section, styles.benefitsSection]}>
           <Text style={styles.sectionTitle}>이런 혜택은 어때요?</Text>
           <View style={styles.benefitCards}>
             <TouchableOpacity style={styles.benefitCard}>
@@ -218,7 +218,7 @@ const Home: React.FC = () => {
               <Text style={styles.benefitAmount}>3,000원 캐시백</Text>
             </TouchableOpacity>
           </View>
-        </View> */}
+        </View>
       </ScrollView>
     </TabViewLayout>
   );

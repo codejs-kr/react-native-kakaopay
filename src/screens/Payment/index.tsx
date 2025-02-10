@@ -58,8 +58,8 @@ const Payment: React.FC = () => {
 
           {/* 바코드 영역 */}
           <View style={styles.barcodeContainer}>
-            {/* <Image source={require('@/src/shared/assets/images/bar_code.png')} style={styles.barcode} />
-            <Image source={require('@/src/shared/assets/images/qr_code.png')} style={styles.qrCode} /> */}
+            <Image source={require('@/src/shared/assets/images/bar_code.png')} style={styles.barcode} />
+            <Image source={require('@/src/shared/assets/images/qr_code.png')} style={styles.qrCode} />
           </View>
         </View>
 
