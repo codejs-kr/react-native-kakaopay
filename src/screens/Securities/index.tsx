@@ -80,6 +80,24 @@ const Securities: React.FC = () => {
       profitAmount: 151235,
       image: DUMMY_IMAGES['100'],
     },
+    {
+      id: '6',
+      name: 'AMD',
+      country: '미국',
+      amount: 422519,
+      profitRate: 9.1,
+      profitAmount: 41235,
+      image: DUMMY_IMAGES['100'],
+    },
+    {
+      id: '7',
+      name: '브로드컴',
+      country: '미국',
+      amount: 222519,
+      profitRate: 20.1,
+      profitAmount: 42235,
+      image: DUMMY_IMAGES['100'],
+    },
     // 더 많은 주식 데이터...
   ];
 
@@ -191,7 +209,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF',
-    marginBottom: 80,
   },
   header: {
     flexDirection: 'row',
