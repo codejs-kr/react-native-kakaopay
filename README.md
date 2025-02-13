@@ -1,6 +1,6 @@
 # react-native-kakaopay with expo
 
-리엑트네이티브로 구성된 간단한 카카오페이 샘플앱입니다.
+리엑트네이티브로 기본 요소만 구성한 카카오페이 샘플앱입니다.
 
 ## install
 ```
