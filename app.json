@@ -19,7 +19,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./src/shared/assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.dodortus.kakaopay"
     },
     "web": {
       "bundler": "metro",
